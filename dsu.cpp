@@ -27,7 +27,7 @@ public:
 
     int size(int a) {
         assert(0 <= a && a < _n);
-        return sz[a];
+        return sz[find(a)];
     }
 
 private:
