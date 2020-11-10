@@ -1,7 +1,7 @@
 const long double eps = 1e-9;
 const long double pi = 3.14159265358979323846;
 
-// скалярное произведение векторов - x1 * x2 + y1 * y2
+// Г±ГЄГ Г«ГїГ°Г­Г®ГҐ ГЇГ°Г®ГЁГ§ГўГҐГ¤ГҐГ­ГЁГҐ ГўГҐГЄГІГ®Г°Г®Гў - x1 * x2 + y1 * y2
 
 bool dequal(long double a, long double b) {
 	if (abs(a - b) < eps)
@@ -53,7 +53,7 @@ long double dist(doublep a, doublep b) {
 }
 
 long double ang(doublep a, doublep b, doublep c) {
-	// угол abc
+	// ГіГЈГ®Г« abc
 	doublep v1 = { a.x - b.x, a.y - b.y };
 	doublep v2 = { c.x - b.x, c.y - b.y };
 	long double aa = sqrt(v1.x * v1.x + v1.y * v1.y);
@@ -113,7 +113,7 @@ ll area(intp a, intp b, intp c) {
 	// |x2 - x1, y2 - y1|
 	// |x3 - x1, y3 - y1|
 	return (ll)(b.x - a.x) * (c.y - a.y) - (ll)(c.x - a.x) * (b.y - a.y);
-	// если < 0, то по часовой стрелке, если > 0, то против часовой стрелки, если 0, то 3 точки лежат на 1 прямой
+	// ГҐГ±Г«ГЁ < 0, ГІГ® ГЇГ® Г·Г Г±Г®ГўГ®Г© Г±ГІГ°ГҐГ«ГЄГҐ, ГҐГ±Г«ГЁ > 0, ГІГ® ГЇГ°Г®ГІГЁГў Г·Г Г±Г®ГўГ®Г© Г±ГІГ°ГҐГ«ГЄГЁ, ГҐГ±Г«ГЁ 0, ГІГ® 3 ГІГ®Г·ГЄГЁ Г«ГҐГ¦Г ГІ Г­Г  1 ГЇГ°ГїГ¬Г®Г©
 }
 
 long double dist(intp a, intp b) {
@@ -125,7 +125,7 @@ ll distsq(intp a, intp b) {
 }
 
 long double ang(intp a, intp b, intp c) {
-	// угол abc
+	// ГіГЈГ®Г« abc
 	intp v1 = { a.x - b.x, a.y - b.y };
 	intp v2 = { c.x - b.x, c.y - b.y };
 	long double aa = sqrt(v1.x * v1.x + v1.y * v1.y);
@@ -145,13 +145,13 @@ vector<intp> hull(vector<intp> p) {
 	d.emplace_back(p[0]);
 
 	for (int i = 1; i < n; i++) {
-		if (area(p[0], p[i], p[n - 1]) < 0) {
+		if (i == n - 1 || area(p[0], p[i], p[n - 1]) < 0) {
 			while (u.size() > 1 && area(u[u.size() - 2], u[u.size() - 1], p[i]) >= 0)
 				u.pop_back();
 			u.emplace_back(p[i]);
 		}
 
-		if (area(p[0], p[i], p[n - 1]) > 0) {
+		if (i == n - 1 || area(p[0], p[i], p[n - 1]) > 0) {
 			while (d.size() > 1 && area(d[d.size() - 2], d[d.size() - 1], p[i]) <= 0)
 				d.pop_back();
 			d.emplace_back(p[i]);
