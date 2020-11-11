@@ -64,7 +64,7 @@ void fft(vector<int>& a, bool invert) {
 }
 
 void poly_mul(vector<int>& a, vector<int> b) {
-    if (min(a.size(), b.size()) < 32) {
+    if (min(a.size(), b.size()) < 128) {
         vector<int> c = a;
         a.assign(a.size() + b.size() - 1, 0);
         for (int i = 0; i < c.size(); ++i) {
