@@ -4,23 +4,31 @@ const int sz = 5e5 + 1;
 int fact[sz];
 int inv_fact[sz];
 
-int add(int a, int b) {
-	return ((ll)a + b + mod) % mod;
+int mul(int a, int b) {
+    return (ll)a * b % mod;
 }
 
-int mul(int a, int b) {
-	return ((ll)a * b) % mod;
+int add(int a, int b) {
+    int res = (ll)a + b;
+    if (res < 0)
+        res += mod;
+    else if (res > mod)
+        res -= mod;
+    return res;
 }
 
 int bpow(int x, int p) {
-	if (p == 0)
-		return 1;
-	if (p % 2)
-		return mul(x, bpow(x, p - 1));
-	else {
-		int b = bpow(x, p / 2);
-		return mul(b, b);
-	}
+    int res = 1;
+    while (p) {
+        if (p & 1)
+            res = mul(res, x);
+
+        p >>= 1;
+
+        if (p)
+            x = mul(x, x);
+    }
+    return res;
 }
 
 int inv(int x) {
